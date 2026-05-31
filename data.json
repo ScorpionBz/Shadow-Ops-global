@@ -1,0 +1,40 @@
+{
+  "settings": {
+    "clanName": "Shadow Ops Global",
+    "tag": "SHDW",
+    "founder": "SCORPIONBZ",
+    "slogan": "Elite Gaming Organization"
+  },
+  "stats": {
+    "members": 1,
+    "wins": 0,
+    "regions": 6,
+    "rankings": 3
+  },
+  "members": [
+    {
+      "gamertag": "SCORPIONBZ",
+      "rank": "Founder & Global Commander",
+      "region": "México / Global",
+      "discord": "scorpbz",
+      "status": "Founder",
+      "avatar": "👑"
+    }
+  ],
+  "requests": [],
+  "news": [
+    {
+      "title": "Shadow Ops Elite Edition",
+      "body": "Nueva plataforma pública y Command Center privado en desarrollo."
+    },
+    {
+      "title": "Reclutamiento global",
+      "body": "Buscamos jugadores activos, respetuosos y con mentalidad competitiva."
+    }
+  ],
+  "mvp": {
+    "name": "Por definir",
+    "region": "Global",
+    "reason": "Seleccionado desde Command Center"
+  }
+}
