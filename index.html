@@ -1,168 +1,207 @@
-<section id="teamSelectScreen" class="team-select">
-
-    <h1>⚽ Selecciona tu equipo</h1>
-
-    <p>Elige el club con el que iniciarás tu carrera</p>
-
-    <div class="teams-grid">
-
-        <button class="team-btn" data-team="Real Madrid">Real Madrid</button>
-        <button class="team-btn" data-team="Barcelona">Barcelona</button>
-        <button class="team-btn" data-team="Manchester City">Manchester City</button>
-        <button class="team-btn" data-team="Liverpool">Liverpool</button>
-        <button class="team-btn" data-team="Bayern Munich">Bayern Munich</button>
-        <button class="team-btn" data-team="PSG">PSG</button>
-
-    </div>
-
-</section>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Career AI</title>
 
 <link rel="stylesheet" href="style.css">
 
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
 
-<!-- AQUÍ VA TODO LO QUE ME ENVIASTE -->
+<!-- =========================
+SELECCIÓN DE EQUIPO
+========================= -->
+<section id="teamSelectScreen" class="team-select">
+
+    <h1>⚽ Elige tu club</h1>
+    <p>Selecciona el equipo con el que iniciarás tu carrera</p>
+
+    <input id="teamSearch" placeholder="Buscar equipo..." />
+
+    <div id="teamsContainer" class="teams-grid"></div>
+
+</section>
+
+<div class="overlay"></div>
+
+<header>
+
+<div class="logo">
+⚽ CAREER AI
+</div>
+
+<nav>
+
+<a href="#">Inicio</a>
+<a href="#">Mi Carrera</a>
+<a href="#">Comunidad</a>
+<a href="#">Noticias</a>
+<a href="#">Ajustes</a>
+
+</nav>
+
+</header>
+
+<section class="hero">
+
+<h1>TU HISTORIA COMIENZA AQUÍ</h1>
+
+<p>
+Cada decisión cambiará el destino de tu club.
+El presidente recordará tus acciones.
+La prensa reaccionará.
+Los jugadores hablarán.
+La afición juzgará.
+</p>
+
+<div class="buttons">
+
+<button id="newCareer">🆕 NUEVA CARRERA</button>
+<button>📂 CONTINUAR</button>
+
+</div>
+
+</section>
+
+<section class="games">
+
+<h2>Selecciona tu juego</h2>
+
+<div class="cards">
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+<h3>FC 25</h3>
+</div>
+
+<div class="card">
+<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+<h3>FC 26</h3>
+</div>
+
+</div>
+
+</section>
+
+<section class="features">
+
+<h2>¿Qué encontrarás?</h2>
+
+<div class="grid">
+
+<div class="feature">
+👔
+<h3>Presidentes Reales</h3>
+<p>Cada club tendrá su propio presidente.</p>
+</div>
+
+<div class="feature">
+📰
+<h3>Noticias Dinámicas</h3>
+<p>La prensa reaccionará a tus decisiones.</p>
+</div>
+
+<div class="feature">
+💰
+<h3>Mercado</h3>
+<p>Compra y vende jugadores.</p>
+</div>
+
+<div class="feature">
+🤖
+<h3>IA Inteligente</h3>
+<p>La IA recordará todo.</p>
+</div>
+
+<div class="feature">
+🎲
+<h3>Eventos Aleatorios</h3>
+<p>Cada carrera será diferente.</p>
+</div>
+
+<div class="feature">
+🏆
+<h3>Objetivos</h3>
+<p>La directiva te exigirá resultados.</p>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+Career AI © 2026
+</footer>
 
 <script src="app.js"></script>
 
+<script>
+// ==========================
+// SISTEMA DE EQUIPOS
+// ==========================
+
+const ALL_TEAMS = [
+"Real Madrid","FC Barcelona","Atletico Madrid","Sevilla",
+"Manchester City","Manchester United","Liverpool","Arsenal","Chelsea",
+"Bayern Munich","Borussia Dortmund",
+"PSG","AC Milan","Inter Milan","Juventus",
+"Ajax","Benfica","Porto",
+"Flamengo","River Plate","Boca Juniors",
+"Al Nassr","Al Hilal","Inter Miami"
+];
+
+function renderTeams(list){
+const container = document.getElementById("teamsContainer");
+container.innerHTML = "";
+
+list.forEach(team=>{
+const btn = document.createElement("button");
+btn.className = "team-btn";
+btn.innerText = team;
+
+btn.onclick = () => selectTeam(team);
+
+container.appendChild(btn);
+});
+}
+
+function selectTeam(team){
+localStorage.setItem("career-team", team);
+document.getElementById("teamSelectScreen").style.display = "none";
+alert("🏟 Equipo seleccionado: " + team);
+}
+
+function initTeams(){
+
+const saved = localStorage.getItem("career-team");
+
+if(saved){
+document.getElementById("teamSelectScreen").style.display = "none";
+}
+
+renderTeams(ALL_TEAMS);
+
+document.getElementById("teamSearch").addEventListener("input",(e)=>{
+const value = e.target.value.toLowerCase();
+const filtered = ALL_TEAMS.filter(t =>
+t.toLowerCase().includes(value)
+);
+renderTeams(filtered);
+});
+
+}
+
+initTeams();
+
+</script>
+
 </body>
-
 </html>
-<header class="topbar">
-
-    <div class="brand">
-
-        <div class="logo-icon">⚽</div>
-
-        <div class="brand-text">
-
-            <h1>CAREER AI</h1>
-
-            <span>Manager Universe Beta 2.0</span>
-
-        </div>
-
-    </div>
-
-    <div class="club-status">
-
-        <div class="status-card">
-
-            <span class="status-title">Presidente</span>
-
-            <strong id="presidentTrust">86%</strong>
-
-        </div>
-
-        <div class="status-card">
-
-            <span class="status-title">Vestuario</span>
-
-            <strong id="lockerRoom">74%</strong>
-
-        </div>
-
-        <div class="status-card">
-
-            <span class="status-title">Afición</span>
-
-            <strong id="fansTrust">91%</strong>
-
-        </div>
-
-    </div>
-
-</header>
-<section class="president-panel">
-
-    <div class="panel-header">
-
-        <h2>📞 Mensaje del Presidente</h2>
-
-        <span class="live-dot"></span>
-
-    </div>
-
-    <div class="panel-body">
-
-        <p id="presidentMessage">
-
-            Buenos días, entrenador.
-
-            Esta temporada esperamos terminar entre los cuatro primeros.
-
-            Mucha suerte.
-
-        </p>
-
-        <button id="openPresident">
-
-            Abrir conversación
-
-        </button>
-
-    </div>
-
-</section>
-<section class="news-panel">
-
-<h2>📰 Noticias del día</h2>
-
-<ul id="newsList">
-
-<li>La afición está ilusionada con la temporada.</li>
-
-<li>El mercado de fichajes abrirá en pocos días.</li>
-
-<li>Varios clubes siguen de cerca a tu delantero estrella.</li>
-
-</ul>
-
-</section>
-<section class="dashboard">
-
-<div class="card">
-
-<h3>🎯 Objetivo Actual</h3>
-
-<p>Clasificar a Champions League.</p>
-
-</div>
-
-<div class="card">
-
-<h3>💰 Presupuesto</h3>
-
-<p>€85,000,000</p>
-
-</div>
-
-<div class="card">
-
-<h3>📅 Próximo Partido</h3>
-
-<p>Real Madrid vs Barcelona</p>
-
-</div>
-
-<div class="card">
-
-<h3>⭐ Moral</h3>
-
-<p>Alta</p>
-
-</div>
-
-</section>
