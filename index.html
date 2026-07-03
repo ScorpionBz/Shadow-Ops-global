@@ -1,224 +1,126 @@
-<!DOCTYPE html>
-<html lang="es">
+<header class="topbar">
 
-<head>
+    <div class="brand">
 
-<meta charset="UTF-8">
+        <div class="logo-icon">⚽</div>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <div class="brand-text">
 
-<title>Career AI</title>
+            <h1>CAREER AI</h1>
 
-<link rel="stylesheet" href="style.css">
+            <span>Manager Universe Beta 2.0</span>
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+        </div>
 
-</head>
+    </div>
 
-<body>
+    <div class="club-status">
 
-<div class="overlay"></div>
+        <div class="status-card">
 
-<header>
+            <span class="status-title">Presidente</span>
 
-<div class="logo">
+            <strong id="presidentTrust">86%</strong>
 
-⚽ CAREER AI
+        </div>
 
-</div>
+        <div class="status-card">
 
-<nav>
+            <span class="status-title">Vestuario</span>
 
-<a href="#">Inicio</a>
+            <strong id="lockerRoom">74%</strong>
 
-<a href="#">Mi Carrera</a>
+        </div>
 
-<a href="#">Comunidad</a>
+        <div class="status-card">
 
-<a href="#">Noticias</a>
+            <span class="status-title">Afición</span>
 
-<a href="#">Ajustes</a>
+            <strong id="fansTrust">91%</strong>
 
-</nav>
+        </div>
+
+    </div>
 
 </header>
+<section class="president-panel">
 
-<section class="hero">
+    <div class="panel-header">
 
-<h1>
+        <h2>📞 Mensaje del Presidente</h2>
 
-TU HISTORIA COMIENZA AQUÍ
+        <span class="live-dot"></span>
 
-</h1>
+    </div>
 
-<p>
+    <div class="panel-body">
 
-Cada decisión cambiará el destino de tu club.
+        <p id="presidentMessage">
 
-El presidente recordará tus acciones.
+            Buenos días, entrenador.
 
-La prensa reaccionará.
+            Esta temporada esperamos terminar entre los cuatro primeros.
 
-Los jugadores hablarán.
+            Mucha suerte.
 
-La afición juzgará.
+        </p>
 
-</p>
+        <button id="openPresident">
 
-<div class="buttons">
+            Abrir conversación
 
-<button id="newCareer">
+        </button>
 
-🆕 NUEVA CARRERA
-
-</button>
-
-<button>
-
-📂 CONTINUAR
-
-</button>
-
-</div>
+    </div>
 
 </section>
+<section class="news-panel">
 
-<section class="games">
+<h2>📰 Noticias del día</h2>
 
-<h2>
+<ul id="newsList">
 
-Selecciona tu juego
+<li>La afición está ilusionada con la temporada.</li>
 
-</h2>
+<li>El mercado de fichajes abrirá en pocos días.</li>
 
-<div class="cards">
+<li>Varios clubes siguen de cerca a tu delantero estrella.</li>
+
+</ul>
+
+</section>
+<section class="dashboard">
 
 <div class="card">
 
-<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+<h3>🎯 Objetivo Actual</h3>
 
-<h3>FC 25</h3>
+<p>Clasificar a Champions League.</p>
 
 </div>
 
 <div class="card">
 
-<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
+<h3>💰 Presupuesto</h3>
 
-<h3>FC 26</h3>
-
-</div>
+<p>€85,000,000</p>
 
 </div>
 
-</section>
+<div class="card">
 
-<section class="features">
+<h3>📅 Próximo Partido</h3>
 
-<h2>
-
-¿Qué encontrarás?
-
-</h2>
-
-<div class="grid">
-
-<div class="feature">
-
-👔
-
-<h3>Presidentes Reales</h3>
-
-<p>
-
-Cada club tendrá su propio presidente.
-
-</p>
+<p>Real Madrid vs Barcelona</p>
 
 </div>
 
-<div class="feature">
+<div class="card">
 
-📰
+<h3>⭐ Moral</h3>
 
-<h3>Noticias Dinámicas</h3>
-
-<p>
-
-La prensa reaccionará a tus decisiones.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-💰
-
-<h3>Mercado</h3>
-
-<p>
-
-Compra y vende jugadores.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-🤖
-
-<h3>IA Inteligente</h3>
-
-<p>
-
-La IA recordará todo.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-🎲
-
-<h3>Eventos Aleatorios</h3>
-
-<p>
-
-Cada carrera será diferente.
-
-</p>
-
-</div>
-
-<div class="feature">
-
-🏆
-
-<h3>Objetivos</h3>
-
-<p>
-
-La directiva te exigirá resultados.
-
-</p>
-
-</div>
+<p>Alta</p>
 
 </div>
 
 </section>
-
-<footer>
-
-Career AI © 2026
-
-</footer>
-
-<script src="app.js"></script>
-
-</body>
-
-</html>
