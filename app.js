@@ -1,262 +1,227 @@
 /*====================================
-    CAREER AI 2.0
-    APP.JS
+    CAREER AI 2.0 - CORE SYSTEM
 ====================================*/
 
-const CareerAI = {
+/*==============================
+    BASE DE CLUBS
+==============================*/
 
-    version: "2.0 Beta",
+const CLUB_DATABASE = {
+"Real Madrid": {
+budget: 180000000,
+pressure: "high",
+president: "Florentino Pérez",
+style: "galactico"
+},
 
-    presidentTrust: 86,
+"FC Barcelona": {
+budget: 120000000,
+pressure: "high",
+president: "Joan Laporta",
+style: "academy"
+},
 
-    lockerRoom: 74,
+"Manchester City": {
+budget: 200000000,
+pressure: "medium",
+president: "Sheikh Mansour",
+style: "winning"
+},
 
-    fans: 91,
+"Manchester United": {
+budget: 150000000,
+pressure: "high",
+president: "INEOS Board",
+style: "rebuild"
+},
 
-    budget: 85000000,
+"PSG": {
+budget: 170000000,
+pressure: "high",
+president: "Nasser Al-Khelaifi",
+style: "stars"
+},
 
-    objective: "Clasificar a Champions League",
+"Bayern Munich": {
+budget: 140000000,
+pressure: "medium",
+president: "Herbert Hainer",
+style: "stable"
+},
 
-    nextMatch: "Real Madrid vs Barcelona",
-
-    morale: "Alta"
-
+"Juventus": {
+budget: 90000000,
+pressure: "medium",
+president: "Board",
+style: "rebuild"
+}
 };
 
-/*====================================
-    MENSAJES DEL PRESIDENTE
-====================================*/
+/*==============================
+    OBTENER CLUB
+==============================*/
 
-const presidentMessages = [
+function getClubData(team){
 
-"Buenos días entrenador. Confío plenamente en tu trabajo.",
-
-"Necesitamos terminar entre los cuatro primeros.",
-
-"La afición espera mejores resultados.",
-
-"Tenemos presupuesto para un gran fichaje.",
-
-"Evita conflictos dentro del vestuario.",
-
-"No vendas a nuestras estrellas.",
-
-"Los patrocinadores están muy satisfechos.",
-
-"Hay rumores sobre tu futuro."
-
-];
-
-/*====================================
-    NOTICIAS
-====================================*/
-
-const news = [
-
-"La afición está muy ilusionada con el proyecto.",
-
-"Tu delantero ha despertado interés en Inglaterra.",
-
-"Un juvenil destaca en los entrenamientos.",
-
-"El presidente prepara nuevas inversiones.",
-
-"Los aficionados llenarán el estadio.",
-
-"Se acerca el mercado de fichajes.",
-
-"Un jugador solicita una mejora salarial.",
-
-"La prensa elogia tu estilo de juego.",
-
-"Varios clubes preguntan por tu capitán."
-
-];
-
-/*====================================
-    CARGAR MENSAJE
-====================================*/
-
-function loadPresidentMessage(){
-
-const message = presidentMessages[
-Math.floor(Math.random()*presidentMessages.length)
-];
-
-document.getElementById("presidentMessage").textContent = message;
+return CLUB_DATABASE[team] || {
+budget: 50000000,
+pressure: "medium",
+president: "Directiva",
+style: "normal"
+};
 
 }
 
-/*====================================
-    CARGAR NOTICIAS
-====================================*/
+/*==============================
+    CARGAR EQUIPO
+==============================*/
 
-function loadNews(){
+let savedTeam = localStorage.getItem("career-team");
 
-const list = document.getElementById("newsList");
+if(!savedTeam){
+savedTeam = "Real Madrid";
+}
 
-list.innerHTML="";
+let clubData = getClubData(savedTeam);
 
-let randomNews=[...news]
-.sort(()=>0.5-Math.random())
-.slice(0,3);
+/*==============================
+    ESTADO DEL JUEGO
+==============================*/
 
-randomNews.forEach(item=>{
+let CareerAI = {
+team: savedTeam,
+budget: clubData.budget,
+president: clubData.president,
+pressure: clubData.pressure,
+morale: 75,
+fans: 80,
+boardTrust: 70
+};
 
-const li=document.createElement("li");
+/*==============================
+    OBJETIVO DINÁMICO
+==============================*/
 
-li.innerHTML="📰 "+item;
+function getObjective(){
 
-list.appendChild(li);
+if(CareerAI.budget > 150000000){
+return "Ganar la liga o Champions";
+}
 
-});
+if(CareerAI.budget > 90000000){
+return "Clasificar a Champions";
+}
+
+return "Evitar descenso y construir proyecto";
+}
+
+/*==============================
+    MENSAJE DEL PRESIDENTE
+==============================*/
+
+function getPresidentMessage(){
+
+let club = getClubData(CareerAI.team);
+
+return `${club.president}:
+
+Tu objetivo es: ${getObjective()}
+
+Presupuesto actual: €${CareerAI.budget}
+
+Confío en ti, pero necesito resultados.`;
 
 }
 
-/*====================================
-    ACTUALIZAR ESTADOS
-====================================*/
+/*==============================
+    REACCIÓN DEL PRESIDENTE
+==============================*/
 
-function updateStatus(){
+function presidentReaction(result){
 
-document.getElementById("presidentTrust").textContent =
-CareerAI.presidentTrust+"%";
+if(result === "win"){
 
-document.getElementById("lockerRoom").textContent =
-CareerAI.lockerRoom+"%";
+CareerAI.boardTrust += 5;
+CareerAI.fans += 4;
+CareerAI.budget += 2000000;
 
-document.getElementById("fansTrust").textContent =
-CareerAI.fans+"%";
+return "El presidente está satisfecho con la victoria.";
 
 }
 
-/*====================================
-    BOTÓN PRESIDENTE
-====================================*/
+if(result === "draw"){
 
-document
-.getElementById("openPresident")
-.addEventListener("click",()=>{
+CareerAI.boardTrust -= 2;
+CareerAI.fans -= 1;
 
-loadPresidentMessage();
+return "El presidente esperaba más.";
 
-alert(
-"📞 El presidente quiere hablar contigo.\n\nRevisa sus nuevas instrucciones."
-);
+}
 
-});
+if(result === "loss"){
 
-/*====================================
+CareerAI.boardTrust -= 10;
+CareerAI.fans -= 8;
+CareerAI.budget -= 3000000;
+
+return "El presidente está muy molesto contigo.";
+
+}
+
+}
+
+/*==============================
     GUARDADO
-====================================*/
+==============================*/
 
-function saveCareer(){
+function saveGame(){
 
-localStorage.setItem(
-
-"career-ai",
-
-JSON.stringify(CareerAI)
-
-);
+localStorage.setItem("career-ai-data", JSON.stringify(CareerAI));
 
 }
 
-/*====================================
-    CARGAR
-====================================*/
+/*==============================
+    CARGAR JUEGO
+==============================*/
 
-function loadCareer(){
+function loadGame(){
 
-const data=
+let data = localStorage.getItem("career-ai-data");
 
-localStorage.getItem("career-ai");
-
-if(!data) return;
-
-Object.assign(
-
-CareerAI,
-
-JSON.parse(data)
-
-);
+if(data){
+CareerAI = JSON.parse(data);
+}
 
 }
 
-/*====================================
-    INICIO
-====================================*/
+/*==============================
+    INICIALIZAR
+==============================*/
 
-window.onload=()=>{
+window.onload = () => {
 
-loadCareer();
+loadGame();
+saveGame();
 
-updateStatus();
-
-loadPresidentMessage();
-
-loadNews();
-
-saveCareer();
-
-console.log(
-
-"Career AI "+CareerAI.version+" iniciado."
-
-);
+console.log("Career AI iniciado:", CareerAI);
 
 };
 
-/*====================================
-    ACTUALIZAR CADA 30 SEGUNDOS
-====================================*/
+/*==============================
+    SIMULACIÓN BÁSICA (TEST)
+==============================*/
 
-setInterval(()=>{
-
-loadNews();
-
-loadPresidentMessage();
-
-},30000);
-//====================================
-// SELECCIÓN DE EQUIPO
-//====================================
-
-function initTeamSelect(){
-
-const screen = document.getElementById("teamSelectScreen");
-
-const savedTeam = localStorage.getItem("career-team");
-
-if(savedTeam){
-
-screen.style.display = "none";
-
-CareerAI.team = savedTeam;
-
-return;
-
+function testWin(){
+console.log(presidentReaction("win"));
+saveGame();
 }
 
-document.querySelectorAll(".team-btn").forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-const team = btn.dataset.team;
-
-CareerAI.team = team;
-
-localStorage.setItem("career-team",team);
-
-screen.style.display = "none";
-
-alert("Has elegido: " + team);
-
-});
-
-});
-
+function testDraw(){
+console.log(presidentReaction("draw"));
+saveGame();
 }
 
-initTeamSelect();
+function testLoss(){
+console.log(presidentReaction("loss"));
+saveGame();
+}
