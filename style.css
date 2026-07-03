@@ -1,569 +1,822 @@
-/* ===========================
-   CAREER AI V1
-   Diseñado por Brayan & ChatGPT
-=========================== */
+/* =====================================
+   CAREER AI 2.0
+   Developed by ScorpionBz
+======================================*/
 
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Poppins',sans-serif;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
 
-    font-family:'Poppins',sans-serif;
+background:
+radial-gradient(circle at top,#12355f 0%,#09121d 30%,#05080d 100%);
 
-    color:white;
+color:#fff;
 
-    min-height:100vh;
-
-    background:
-    linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.80)),
-    url("https://images.unsplash.com/photo-1547347298-4074fc3086f0?auto=format&fit=crop&w=1920&q=80");
-
-    background-size:cover;
-
-    background-position:center;
-
-    background-attachment:fixed;
-
-}
-
-.overlay{
-
-    position:fixed;
-
-    inset:0;
-
-    backdrop-filter:blur(2px);
-
-    z-index:-1;
-
-}
-
-/* HEADER */
-
-header{
-
-    width:100%;
-
-    height:85px;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    padding:0 70px;
-
-    background:rgba(0,0,0,.55);
-
-    backdrop-filter:blur(15px);
-
-    border-bottom:1px solid rgba(255,255,255,.12);
-
-    position:fixed;
-
-    top:0;
-
-    left:0;
-
-    z-index:999;
-
-}
-
-.logo{
-
-    font-size:32px;
-
-    font-weight:800;
-
-    color:#2cff65;
-
-    letter-spacing:2px;
-
-}
-
-nav{
-
-    display:flex;
-
-    gap:25px;
-
-}
-
-nav a{
-
-    color:white;
-
-    text-decoration:none;
-
-    font-weight:600;
-
-    transition:.3s;
-
-}
-
-nav a:hover{
-
-    color:#2cff65;
-
-}
-
-/* HERO */
-
-.hero{
-
-    min-height:100vh;
-
-    display:flex;
-
-    justify-content:center;
-
-    align-items:center;
-
-    flex-direction:column;
-
-    text-align:center;
-
-    padding:120px 20px;
-
-}
-
-.hero h1{
-
-    font-size:72px;
-
-    max-width:900px;
-
-    line-height:1.1;
-
-    margin-bottom:25px;
-
-    text-shadow:0 0 30px rgba(0,0,0,.6);
-
-}
-
-.hero p{
-
-    max-width:850px;
-
-    font-size:22px;
-
-    color:#dcdcdc;
-
-    line-height:1.7;
-
-    margin-bottom:45px;
-
-}
-
-/* BOTONES */
-
-.buttons{
-
-    display:flex;
-
-    gap:25px;
-
-    flex-wrap:wrap;
-
-    justify-content:center;
-
-}
-
-.buttons button{
-
-    padding:18px 40px;
-
-    border:none;
-
-    border-radius:15px;
-
-    cursor:pointer;
-
-    font-size:18px;
-
-    font-weight:700;
-
-    transition:.35s;
-
-}
-
-#newCareer{
-
-    background:#2cff65;
-
-    color:#111;
-
-}
-
-#newCareer:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:0 0 30px #2cff65;
-
-}
-
-.buttons button:last-child{
-
-    background:rgba(255,255,255,.12);
-
-    color:white;
-
-    border:1px solid rgba(255,255,255,.25);
-
-}
-
-.buttons button:last-child:hover{
-
-    background:white;
-
-    color:black;
-
-}
-
-/* JUEGOS */
-
-.games{
-
-    padding:90px 40px;
-
-    text-align:center;
-
-}
-
-.games h2{
-
-    font-size:45px;
-
-    margin-bottom:45px;
-
-}
-
-.cards{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:40px;
-
-    flex-wrap:wrap;
-
-}
-
-.card{
-
-    width:300px;
-
-    background:rgba(255,255,255,.08);
-
-    backdrop-filter:blur(18px);
-
-    border-radius:20px;
-
-    padding:35px;
-
-    transition:.4s;
-
-    border:1px solid rgba(255,255,255,.15);
-
-}
-
-.card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:0 0 35px rgba(44,255,101,.4);
-
-}
-
-.card img{
-
-    width:90px;
-
-    margin-bottom:20px;
-
-}
-
-.card h3{
-
-    font-size:32px;
-
-}
-
-/* CARACTERÍSTICAS */
-
-.features{
-
-    padding:90px 30px;
-
-}
-
-.features h2{
-
-    text-align:center;
-
-    font-size:45px;
-
-    margin-bottom:60px;
-
-}
-
-.grid{
-
-    display:grid;
-
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-
-    gap:30px;
-
-}
-
-.feature{
-
-    background:rgba(255,255,255,.08);
-
-    border-radius:20px;
-
-    padding:35px;
-
-    backdrop-filter:blur(15px);
-
-    transition:.3s;
-
-}
-
-.feature:hover{
-
-    transform:scale(1.05);
-
-}
-
-.feature h3{
-
-    margin:18px 0;
-
-    color:#2cff65;
-
-}
-
-.feature p{
-
-    color:#ddd;
-
-    line-height:1.7;
-
-}
-
-/* FOOTER */
-
-footer{
-
-    padding:35px;
-
-    text-align:center;
-
-    background:#050505;
-
-    color:#aaa;
-
-}
-
-/* RESPONSIVE */
-
-@media(max-width:900px){
-
-header{
-
-padding:20px;
-
-flex-direction:column;
-
-height:auto;
-
-}
-
-nav{
-
-flex-wrap:wrap;
-
-justify-content:center;
-
-margin-top:15px;
-
-}
-
-.hero h1{
-
-font-size:48px;
-
-}
-
-.hero p{
-
-font-size:18px;
-
-}
-
-}/*==========================
-MODAL
-==========================*/
-
-#careerModal{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-background:rgba(0,0,0,.8);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-z-index:9999;
-
-}
-
-.career-box{
-
-background:#111;
+min-height:100vh;
 
 padding:40px;
 
+overflow-x:hidden;
+
+}
+
+/* Scroll */
+
+::-webkit-scrollbar{
+width:8px;
+}
+
+::-webkit-scrollbar-track{
+background:#101010;
+}
+
+::-webkit-scrollbar-thumb{
+background:#1b75ff;
 border-radius:20px;
-
-width:90%;
-
-max-width:500px;
-
-text-align:center;
-
-border:2px solid #2cff65;
-
-animation:zoom .3s;
-
 }
 
-.career-box h2{
+/* ===========================
+HEADER
+=========================== */
 
-margin-bottom:20px;
-
-}
-
-.games-select{
+.topbar{
 
 display:flex;
 
-flex-direction:column;
+justify-content:space-between;
 
-gap:15px;
+align-items:center;
 
-margin:30px 0;
+padding:25px;
 
-}
+background:rgba(18,22,32,.75);
 
-.game-btn{
+backdrop-filter:blur(18px);
 
-padding:18px;
+border-radius:20px;
 
-font-size:18px;
+border:1px solid rgba(255,255,255,.08);
 
-border:none;
+box-shadow:
 
-cursor:pointer;
+0 15px 40px rgba(0,0,0,.45);
 
-border-radius:12px;
-
-background:#2cff65;
-
-font-weight:bold;
-
-transition:.3s;
+margin-bottom:35px;
 
 }
 
-.game-btn:hover{
+/* Logo */
 
-transform:scale(1.05);
+.brand{
 
-}
+display:flex;
 
-#closeModal{
+align-items:center;
 
-padding:14px 25px;
-
-background:#333;
-
-color:white;
-
-border:none;
-
-border-radius:10px;
-
-cursor:pointer;
+gap:18px;
 
 }
 
-@keyframes zoom{
+.logo-icon{
 
-from{
+width:70px;
 
-transform:scale(.7);
+height:70px;
 
-opacity:0;
+border-radius:50%;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:34px;
+
+background:
+
+linear-gradient(135deg,#1b75ff,#14d45c);
+
+box-shadow:
+
+0 0 30px rgba(27,117,255,.45);
 
 }
 
-to{
+.brand h1{
 
-transform:scale(1);
+font-size:34px;
+
+font-weight:800;
+
+letter-spacing:2px;
+
+}
+
+.brand span{
+
+opacity:.65;
+
+font-size:14px;
+
+}
+
+/* ===========================
+STATUS
+=========================== */
+
+.club-status{
+
+display:flex;
+
+gap:20px;
+
+}
+
+.status-card{
+
+background:rgba(255,255,255,.05);
+
+padding:18px 25px;
+
+border-radius:18px;
+
+text-align:center;
+
+min-width:130px;
+
+transition:.35s;
+
+border:1px solid rgba(255,255,255,.06);
+
+}
+
+.status-card:hover{
+
+transform:translateY(-5px);
+
+background:rgba(255,255,255,.08);
+
+}
+
+.status-title{
+
+display:block;
+
+font-size:13px;
+
+opacity:.7;
+
+margin-bottom:8px;
+
+}
+
+.status-card strong{
+
+font-size:28px;
+
+color:#31ff7b;
+
+}
+
+/* ===========================
+PRESIDENT PANEL
+=========================== */
+
+.president-panel{
+
+margin-bottom:35px;
+
+background:
+
+linear-gradient(145deg,#111827,#081119);
+
+border-radius:25px;
+
+padding:30px;
+
+border:1px solid rgba(255,255,255,.08);
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.4);
+
+}
+
+.panel-header{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin-bottom:25px;
+
+}
+
+.panel-header h2{
+
+font-size:28px;
+
+}
+
+.live-dot{
+
+width:14px;
+
+height:14px;
+
+border-radius:50%;
+
+background:#00ff5e;
+
+box-shadow:
+
+0 0 20px #00ff5e;
+
+animation:pulse 1.2s infinite;
+
+}
+
+@keyframes pulse{
+
+0%{
+
+transform:scale(.8);
+
+opacity:.5;
+
+}
+
+50%{
+
+transform:scale(1.3);
 
 opacity:1;
 
 }
 
-}
-#modal{
-    position:fixed;
-    inset:0;
-    background:rgba(0,0,0,.85);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
+100%{
+
+transform:scale(.8);
+
+opacity:.5;
+
 }
 
-.modal-box{
-    background:#111;
-    padding:30px;
-    border-radius:15px;
-    width:90%;
-    max-width:500px;
-    text-align:center;
-    border:1px solid #2cff65;
 }
 
-.modal-box button{
-    margin:8px;
-    padding:12px 18px;
-    border:none;
-    border-radius:10px;
-    cursor:pointer;
-    background:#2cff65;
-    font-weight:bold;
+.panel-body{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+gap:30px;
+
 }
+
+.panel-body p{
+
+font-size:18px;
+
+line-height:1.8;
+
+opacity:.9;
+
+flex:1;
+
+}
+
+#openPresident{
+
+padding:16px 35px;
+
+border:none;
+
+border-radius:15px;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:700;
+
+background:
+
+linear-gradient(135deg,#1b75ff,#14d45c);
+
+color:white;
+
+transition:.3s;
+
+}
+
+#openPresident:hover{
+
+transform:scale(1.05);
+
+box-shadow:0 0 25px rgba(20,212,92,.45);
+
+}
+
+/* ===========================
+NEWS
+=========================== */
+
+.news-panel{
+
+background:#101722;
+
+padding:30px;
+
+border-radius:25px;
+
+margin-bottom:35px;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.news-panel h2{
+
+margin-bottom:20px;
+
+font-size:28px;
+
+}
+
+#newsList{
+
+list-style:none;
+
+}
+
+#newsList li{
+
+padding:18px;
+
+margin-bottom:15px;
+
+border-radius:15px;
+
+background:rgba(255,255,255,.05);
+
+transition:.3s;
+
+}
+
+#newsList li:hover{
+
+background:#1b75ff;
+
+transform:translateX(10px);
+
+}
+/*=========================================
+ DASHBOARD
+=========================================*/
+
+.dashboard{
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+
+gap:25px;
+
+margin-top:30px;
+
+}
+
+.card{
+
+position:relative;
+
+overflow:hidden;
+
+background:linear-gradient(145deg,#111827,#0b1220);
+
+border-radius:22px;
+
+padding:30px;
+
+border:1px solid rgba(255,255,255,.06);
+
+transition:.35s;
+
+cursor:pointer;
+
+box-shadow:
+
+0 15px 30px rgba(0,0,0,.35);
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:
+
+0 25px 50px rgba(27,117,255,.25);
+
+border-color:#1b75ff;
+
+}
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:-60px;
+
+right:-60px;
+
+width:180px;
+
+height:180px;
+
+background:radial-gradient(circle,#1b75ff55,transparent 70%);
+
+border-radius:50%;
+
+transition:.4s;
+
+}
+
+.card:hover::before{
+
+transform:scale(1.3);
+
+}
+
+.card h3{
+
+font-size:20px;
+
+margin-bottom:15px;
+
+font-weight:700;
+
+color:#fff;
+
+}
+
+.card p{
+
+font-size:17px;
+
+color:#b8c3d8;
+
+line-height:1.7;
+
+}
+
+/*=========================================
+ CARD COLORS
+=========================================*/
+
+.card:nth-child(1){
+
+border-left:5px solid #1b75ff;
+
+}
+
+.card:nth-child(2){
+
+border-left:5px solid #00ff88;
+
+}
+
+.card:nth-child(3){
+
+border-left:5px solid #ffb300;
+
+}
+
+.card:nth-child(4){
+
+border-left:5px solid #ff4d4d;
+
+}
+
+/*=========================================
+ BUTTONS
+=========================================*/
+
+button{
+
+transition:.3s;
+
+}
+
+button:hover{
+
+transform:translateY(-3px);
+
+}
+
+button:active{
+
+transform:scale(.97);
+
+}
+
+/*=========================================
+ GLOW EFFECT
+=========================================*/
+
+.glow{
+
+box-shadow:
+
+0 0 10px rgba(0,255,136,.5),
+
+0 0 30px rgba(0,255,136,.25);
+
+}
+
+/*=========================================
+ PROGRESS BAR
+=========================================*/
+
+.progress{
+
+height:10px;
+
+background:#222;
+
+border-radius:30px;
+
+overflow:hidden;
+
+margin-top:15px;
+
+}
+
+.progress span{
+
+display:block;
+
+height:100%;
+
+border-radius:30px;
+
+background:linear-gradient(90deg,#1b75ff,#00ff88);
+
+}
+
+/*=========================================
+ TAGS
+=========================================*/
+
+.tag{
+
+display:inline-block;
+
+padding:8px 15px;
+
+border-radius:30px;
+
+font-size:13px;
+
+font-weight:600;
+
+margin-top:10px;
+
+}
+
+.tag.success{
+
+background:#14d45c22;
+
+color:#33ff88;
+
+}
+
+.tag.warning{
+
+background:#ffb30022;
+
+color:#ffcb48;
+
+}
+
+.tag.danger{
+
+background:#ff2f4022;
+
+color:#ff5b6d;
+
+}
+
+/*=========================================
+ ANIMATIONS
+=========================================*/
+
+.fadeUp{
+
+animation:fadeUp .8s ease;
+
+}
+
+@keyframes fadeUp{
+
+from{
+
+opacity:0;
+
+transform:translateY(30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+.float{
+
+animation:float 5s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-10px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/*=========================================
+ RESPONSIVE
+=========================================*/
+
+@media(max-width:1100px){
+
+.topbar{
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.club-status{
+
+width:100%;
+
+justify-content:center;
+
+flex-wrap:wrap;
+
+}
+
+.panel-body{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.dashboard{
+
+grid-template-columns:1fr 1fr;
+
+}
+
+}
+
+@media(max-width:700px){
+
+body{
+
+padding:20px;
+
+}
+
+.brand{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+.logo-icon{
+
+width:60px;
+
+height:60px;
+
+font-size:28px;
+
+}
+
+.brand h1{
+
+font-size:28px;
+
+}
+
+.panel-header h2{
+
+font-size:22px;
+
+}
+
+.dashboard{
+
+grid-template-columns:1fr;
+
+}
+
+.status-card{
+
+width:100%;
+
+}
+
+#openPresident{
+
+width:100%;
+
+}
+
+}
+
+/*=========================================
+ FOOTER
+=========================================*/
+
+footer{
+
+margin-top:60px;
+
+padding:20px;
+
+text-align:center;
+
+color:#8f9ab3;
+
+font-size:14px;
+
+opacity:.8;
+
+}
+
+footer a{
+
+color:#1b75ff;
+
+text-decoration:none;
+
+}
+
+footer a:hover{
+
+color:#00ff88;
+
+}
+
+/*=========================================
+ CAREER AI 2.0
+=========================================*/
