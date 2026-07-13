@@ -1,16 +1,25 @@
-console.log("CAREER AI FUNCIONANDO");
+console.log("APP JS CARGADO");
 
 
 function startCareer(){
 
-    const setup = document.getElementById("teamSelectScreen");
-
-    if(setup){
-        setup.style.display="none";
-    }
+alert("FUNCIONA EL BOTON");
 
 
-    alert("Carrera iniciada correctamente");
+document.getElementById("setup").style.display="none";
 
+document.getElementById("career").classList.remove("hidden");
+
+
+document.getElementById("clubName").innerHTML =
+document.getElementById("clubSelect").value;
+
+
+document.getElementById("president").innerHTML =
+"Presidente de prueba";
+
+
+document.getElementById("budget").innerHTML =
+"€100.000.000";
 
 }
