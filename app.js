@@ -1,149 +1,93 @@
-/* =====================================
-   CAREER AI 3.0 - APP CORE FIX
-===================================== */
-console.log("Career AI cargando...");
-console.log(CLUBS);
+const clubs={
 
-let Career = {};
+"Real Madrid":{
+president:"Florentino Pérez",
+budget:180000000
+},
 
+"FC Barcelona":{
+president:"Joan Laporta",
+budget:120000000
+},
 
-const clubSelect = document.getElementById("clubSelect");
-
-
-// Cargar clubes
-
-Object.keys(CLUBS).forEach(club => {
-
-    let option = document.createElement("option");
-
-    option.value = club;
-    option.textContent = club;
-
-    clubSelect.appendChild(option);
-
-});
-
-
-
-// Iniciar carrera
-
-function startCareer(){
-
-
-    let selectedClub = clubSelect.value;
-
-
-    let data = CLUBS[selectedClub];
-
-
-    Career = {
-
-        club:selectedClub,
-
-        league:data.league,
-
-        budget:data.budget,
-
-        president:data.president,
-
-        trust:75,
-
-        events:[]
-
-    };
-
-
-    localStorage.setItem(
-        "careerAI",
-        JSON.stringify(Career)
-    );
-
-
-    showCareer();
-
+"Manchester City":{
+president:"Sheikh Mansour",
+budget:200000000
 }
 
+};
 
 
-// Mostrar pantalla principal
-
-function showCareer(){
+const select=document.getElementById("clubSelect");
 
 
-    document
-    .getElementById("setup")
-    .style.display="none";
+document
+.getElementById("startBtn")
+.onclick=function(){
 
 
-    document
-    .getElementById("career")
-    .classList.remove("hidden");
+let club=select.value;
 
 
-
-    document
-    .getElementById("clubName")
-    .textContent =
-    Career.club;
+let data=clubs[club];
 
 
-
-    document
-    .getElementById("president")
-    .textContent =
-    Career.president;
+document
+.getElementById("setup")
+.style.display="none";
 
 
-
-    document
-    .getElementById("budget")
-    .textContent =
-    "€"+Career.budget.toLocaleString();
+document
+.getElementById("career")
+.classList.remove("hidden");
 
 
-
-    document
-    .getElementById("trust")
-    .textContent =
-    Career.trust+"/100";
+document
+.getElementById("clubName")
+.innerHTML=club;
 
 
-}
+document
+.getElementById("president")
+.innerHTML=data.president;
+
+
+document
+.getElementById("budget")
+.innerHTML="€"+data.budget.toLocaleString();
+
+
+};
 
 
 
-// Eventos
+document
+.getElementById("eventBtn")
+.onclick=function(){
 
-function generateEvent(){
 
+let events=[
 
-const events=[
+"El delantero estrella está enfadado por no jugar.",
 
-"👀 Un jugador importante está molesto por sus minutos.",
+"El presidente pide ganar el próximo partido.",
 
-"💰 Un club rival pregunta por una estrella.",
+"La prensa habla de una crisis.",
 
-"📰 La prensa analiza tus últimas decisiones.",
-
-"🌟 Un joven de cantera pide una oportunidad.",
-
-"👔 El presidente quiere hablar contigo."
+"Un joven pide más minutos."
 
 ];
 
 
-let event =
+let random=
 events[Math.floor(Math.random()*events.length)];
 
 
-
-let div =
-document.createElement("div");
-
+let div=document.createElement("div");
 
 div.className="event";
 
-div.textContent=event;
+div.innerHTML=random;
 
 
 document
@@ -151,6 +95,4 @@ document
 .prepend(div);
 
 
-}
-window.startCareer = startCareer;
-window.generateEvent = generateEvent;
+};
