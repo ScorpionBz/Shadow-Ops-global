@@ -1,7 +1,8 @@
 /* =====================================
    CAREER AI 3.0 - APP CORE FIX
 ===================================== */
-
+console.log("Career AI cargando...");
+console.log(CLUBS);
 
 let Career = {};
 
