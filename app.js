@@ -73,7 +73,10 @@ document.getElementById("career")
 document.getElementById("clubName")
 .textContent=Career.club;
 
-
+document.getElementById("league")
+.textContent=
+Career.league;
+    
 document.getElementById("president")
 .textContent=Career.president;
 
