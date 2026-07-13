@@ -31,3 +31,18 @@
 ]
 
 };
+function getLeagueByClub(club){
+
+for(let league in LEAGUES){
+
+    if(LEAGUES[league].includes(club)){
+
+        return league;
+
+    }
+
+}
+
+return "Liga personalizada";
+
+}
