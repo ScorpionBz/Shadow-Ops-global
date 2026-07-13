@@ -2,207 +2,112 @@
 <html lang="es">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Career AI</title>
+<title>Career AI 3.0</title>
 
 <link rel="stylesheet" href="style.css">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
 </head>
 
 <body>
 
-<!-- =========================
-SELECCIÓN DE EQUIPO
-========================= -->
-<section id="teamSelectScreen" class="team-select">
+<div id="setup" class="screen">
 
-    <h1>⚽ Elige tu club</h1>
-    <p>Selecciona el equipo con el que iniciarás tu carrera</p>
+<h1>⚽ CAREER AI 3.0</h1>
 
-    <input id="teamSearch" placeholder="Buscar equipo..." />
+<p>Tu carrera. Tus decisiones. Tu historia.</p>
 
-    <div id="teamsContainer" class="teams-grid"></div>
+<select id="gameSelect">
+<option value="FC26">FC 26</option>
+<option value="FC25">FC 25</option>
+</select>
 
-</section>
 
-<div class="overlay"></div>
+<select id="clubSelect"></select>
+
+
+<button onclick="startCareer()">
+🚀 COMENZAR CARRERA
+</button>
+
+</div>
+
+
+
+<div id="career" class="hidden">
+
 
 <header>
 
-<div class="logo">
-⚽ CAREER AI
-</div>
+<h1 id="clubName">
+</h1>
 
-<nav>
-
-<a href="#">Inicio</a>
-<a href="#">Mi Carrera</a>
-<a href="#">Comunidad</a>
-<a href="#">Noticias</a>
-<a href="#">Ajustes</a>
-
-</nav>
+<p id="season">
+Temporada 2026/27
+</p>
 
 </header>
 
-<section class="hero">
 
-<h1>TU HISTORIA COMIENZA AQUÍ</h1>
 
-<p>
-Cada decisión cambiará el destino de tu club.
-El presidente recordará tus acciones.
-La prensa reaccionará.
-Los jugadores hablarán.
-La afición juzgará.
-</p>
+<section class="cards">
 
-<div class="buttons">
-
-<button id="newCareer">🆕 NUEVA CARRERA</button>
-<button>📂 CONTINUAR</button>
-
-</div>
-
-</section>
-
-<section class="games">
-
-<h2>Selecciona tu juego</h2>
-
-<div class="cards">
 
 <div class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
-<h3>FC 25</h3>
+
+<h3>👔 Presidente</h3>
+
+<p id="president"></p>
+
 </div>
+
 
 <div class="card">
-<img src="https://cdn-icons-png.flaticon.com/512/53/53283.png">
-<h3>FC 26</h3>
-</div>
+
+<h3>💰 Presupuesto</h3>
+
+<p id="budget"></p>
 
 </div>
+
+
+<div class="card">
+
+<h3>📊 Confianza</h3>
+
+<p id="trust"></p>
+
+</div>
+
 
 </section>
 
-<section class="features">
 
-<h2>¿Qué encontrarás?</h2>
 
-<div class="grid">
+<section class="messages">
 
-<div class="feature">
-👔
-<h3>Presidentes Reales</h3>
-<p>Cada club tendrá su propio presidente.</p>
-</div>
+<h2>📩 Noticias del club</h2>
 
-<div class="feature">
-📰
-<h3>Noticias Dinámicas</h3>
-<p>La prensa reaccionará a tus decisiones.</p>
-</div>
-
-<div class="feature">
-💰
-<h3>Mercado</h3>
-<p>Compra y vende jugadores.</p>
-</div>
-
-<div class="feature">
-🤖
-<h3>IA Inteligente</h3>
-<p>La IA recordará todo.</p>
-</div>
-
-<div class="feature">
-🎲
-<h3>Eventos Aleatorios</h3>
-<p>Cada carrera será diferente.</p>
-</div>
-
-<div class="feature">
-🏆
-<h3>Objetivos</h3>
-<p>La directiva te exigirá resultados.</p>
-</div>
-
-</div>
+<div id="events"></div>
 
 </section>
 
-<footer>
-Career AI © 2026
-</footer>
 
+
+<button onclick="generateEvent()">
+🎲 Nuevo evento
+</button>
+
+
+</div>
+
+
+
+<script src="database.js"></script>
+<script src="presidents.js"></script>
+<script src="storage.js"></script>
 <script src="app.js"></script>
-
-<script>
-// ==========================
-// SISTEMA DE EQUIPOS
-// ==========================
-
-const ALL_TEAMS = [
-"Real Madrid","FC Barcelona","Atletico Madrid","Sevilla",
-"Manchester City","Manchester United","Liverpool","Arsenal","Chelsea",
-"Bayern Munich","Borussia Dortmund",
-"PSG","AC Milan","Inter Milan","Juventus",
-"Ajax","Benfica","Porto",
-"Flamengo","River Plate","Boca Juniors",
-"Al Nassr","Al Hilal","Inter Miami"
-];
-
-function renderTeams(list){
-const container = document.getElementById("teamsContainer");
-container.innerHTML = "";
-
-list.forEach(team=>{
-const btn = document.createElement("button");
-btn.className = "team-btn";
-btn.innerText = team;
-
-btn.onclick = () => selectTeam(team);
-
-container.appendChild(btn);
-});
-}
-
-function selectTeam(team){
-localStorage.setItem("career-team", team);
-document.getElementById("teamSelectScreen").style.display = "none";
-alert("🏟 Equipo seleccionado: " + team);
-}
-
-function initTeams(){
-
-const saved = localStorage.getItem("career-team");
-
-if(saved){
-document.getElementById("teamSelectScreen").style.display = "none";
-}
-
-renderTeams(ALL_TEAMS);
-
-document.getElementById("teamSearch").addEventListener("input",(e)=>{
-const value = e.target.value.toLowerCase();
-const filtered = ALL_TEAMS.filter(t =>
-t.toLowerCase().includes(value)
-);
-renderTeams(filtered);
-});
-
-}
-
-initTeams();
-
-</script>
 
 </body>
 </html>
-<button onclick="handleMatch()">⚽ JUGAR PARTIDO</button>
