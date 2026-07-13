@@ -94,5 +94,5 @@ document
 .getElementById("events")
 .prepend(div);
 
-
+window.startCareer = startCareer;
 };
